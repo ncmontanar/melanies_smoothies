@@ -41,8 +41,12 @@ if ingredients_list:
 ##🥋6 Create the INGREDIENTS_STRING Variable 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
-        #🥋 Let's Get the SmoothieFroot Data to Show Nutrition Data for the Fruits Chosen
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
+        #🥋10.3 Use Our fruit_chosen Variable in the API Call
+        st.subheader(fruit_chosen + 'Nutrition Information')
+        
+        #10.2🥋 Let's Get the SmoothieFroot Data to Show Nutrition Data for the Fruits Chosen
+        #smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+fruit_chosen)
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     #st.text(ingredients_string)
