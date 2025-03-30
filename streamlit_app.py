@@ -42,7 +42,7 @@ if ingredients_list:
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
         #🥋10.3 Use Our fruit_chosen Variable in the API Call
-        st.subheader(fruit_chosen + 'Nutrition Information')
+        st.subheader(fruit_chosen +' '+ 'Nutrition Information')
         
         #10.2🥋 Let's Get the SmoothieFroot Data to Show Nutrition Data for the Fruits Chosen
         #smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
