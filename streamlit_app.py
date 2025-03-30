@@ -68,5 +68,5 @@ if ingredients_list:
 ## ALTER TABLE smoothies.public.orders add column Name varchar(100);
 
 ## add new section to show smoothie fruit nutrition information
-smoothiefroot_response = request.get("https://smoothiefroot.com/api/fruit/orange")
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
 st.text(smoothiefroot_response)
