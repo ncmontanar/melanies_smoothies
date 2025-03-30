@@ -1,8 +1,6 @@
 ##🥋Import python packages
 import streamlit as st
-#from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col
-import streamlit as st
 
 
 ##2 🥋 Write directly to the app
@@ -16,7 +14,6 @@ title = st.text_input("Name of the smoothie : ")
 st.write("The of your Name of the smoothie is", title)
 
 ##3🥋 Activate a table & select column
-#session = get_active_session()
 cnx= st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
