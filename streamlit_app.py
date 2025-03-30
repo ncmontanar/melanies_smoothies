@@ -41,6 +41,9 @@ if ingredients_list:
 ##🥋6 Create the INGREDIENTS_STRING Variable 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
+        #🥋 Let's Get the SmoothieFroot Data to Show Nutrition Data for the Fruits Chosen
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
 
     #st.text(ingredients_string)
 
@@ -68,11 +71,11 @@ if ingredients_list:
 ## ALTER TABLE smoothies.public.orders add column Name varchar(100);
 
 ## 🥋 add new section to show smoothie fruit nutrition information
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
+#smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
 #st.text(smoothiefroot_response)
 
 ## 🥋 Expose the JSON Data Inside the Response Object
 #st.text(smoothiefroot_response.json())
 
 ## 🥋 Let's Put the JSON into a Dataframe
-sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+#sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
