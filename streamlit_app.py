@@ -18,8 +18,10 @@ st.write("The of your Name of the smoothie is", title)
 ##3🥋 Activate a table & select column
 cnx= st.connection("snowflake")
 session = cnx.session()
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+## 10.6 🥋 Add the New SEARCH_ON Column to the Dataframe that feeds the Multiselect
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 st.dataframe(data=my_dataframe, use_container_width=True)
+st.stop()
 
 
 ##4🥋 Add a Multiselect
