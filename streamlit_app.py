@@ -1,6 +1,8 @@
 ##🥋Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+#🥋 Let's Call the SmoothieFroot API from Our SniS App!
+import requests
 
 
 ##2 🥋 Write directly to the app
@@ -62,8 +64,9 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success(f'Your Smoothie is ordered, {name_on_order}', icon="✅")
 
-
-
 ## 11.🥋 Use the ALTER Command to Add a New Column to Your Orders Table ((see DABW WokrSheet))
 ## ALTER TABLE smoothies.public.orders add column Name varchar(100);
 
+## add new section to show smoothie fruit nutrition information
+smoothiefroot_response = request.get("https://smoothiefroot.com/api/fruit/orange")
+st.text(smoothiefroot_response)
