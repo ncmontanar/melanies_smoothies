@@ -67,6 +67,8 @@ if ingredients_list:
 ## 11.🥋 Use the ALTER Command to Add a New Column to Your Orders Table ((see DABW WokrSheet))
 ## ALTER TABLE smoothies.public.orders add column Name varchar(100);
 
-## add new section to show smoothie fruit nutrition information
+## 🥋 add new section to show smoothie fruit nutrition information
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
-st.text(smoothiefroot_response)
+#st.text(smoothiefroot_response)
+## 🥋 Expose the JSON Data Inside the Response Object
+st.text(smoothiefroot_response.json())
