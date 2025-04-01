@@ -3,6 +3,7 @@ import streamlit as st
 from snowflake.snowpark.functions import col
 #🥋 Let's Call the SmoothieFroot API from Our SniS App!
 import requests
+import pandas as pd
 
 
 ##2 🥋 Write directly to the app
@@ -19,10 +20,14 @@ st.write("The of your Name of the smoothie is", title)
 cnx= st.connection("snowflake")
 session = cnx.session()
 ## 10.6 🥋 Add the New SEARCH_ON Column to the Dataframe that feeds the Multiselect
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'),col('SEARCH_ON'))
-st.dataframe(data=my_dataframe, use_container_width=True)
-st.stop()
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'), col('SEARCH_ON'))
+#st.dataframe(data=my_dataframe, use_container_width=True)
+#st.stop()
 
+# 🥋 Make a Version of my_dataframe, but call it pd_df
+pd_df = my_dataframe.to_pandas()
+#st.dataframe(pd_df)
+#st.stop()
 
 ##4🥋 Add a Multiselect
 ingredients_list = st.multiselect(
@@ -43,8 +48,15 @@ if ingredients_list:
 ##🥋6 Create the INGREDIENTS_STRING Variable 
     for fruit_chosen in ingredients_list:
         ingredients_string += fruit_chosen + ' '
+
+        #🥋 A Strange-Looking Statement That Will Get Us the "Search On" Value
+
+        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
+        st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
+            
         #🥋10.3 Use Our fruit_chosen Variable in the API Call
         st.subheader(fruit_chosen +' '+ 'Nutrition Information')
+            
         
         #10.2🥋 Let's Get the SmoothieFroot Data to Show Nutrition Data for the Fruits Chosen
         #smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/orange")
